@@ -1,12 +1,12 @@
 package restcommon.runner;
 
-import restcommon.databind.RestTestGroup;
 import junitparams.Parameters;
 import junitparams.naming.TestCaseName;
-import org.junit.*;
-import org.junit.runners.model.InitializationError;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import restcommon.databind.RestTestGroup;
 
-import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 

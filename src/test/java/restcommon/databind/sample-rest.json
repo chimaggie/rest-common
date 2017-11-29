@@ -1,0 +1,21 @@
+{
+  "baseUrl": "https://jsonplaceholder.typicode.com",
+  "tests": [
+    {
+      "name": "testGetPost1",
+      "command": {
+        "url": "/posts/1",
+        "method": "GET"
+      },
+      "expect": {
+        "statusCode": 200,
+        "bodyValues": {
+          "userId": 1,
+          "id": 1,
+          "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+          "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+        }
+      }
+    }
+  ]
+}

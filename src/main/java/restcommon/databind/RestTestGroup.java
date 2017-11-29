@@ -10,8 +10,6 @@ import java.net.URL;
 import java.util.*;
 
 import static com.jayway.restassured.path.json.JsonPath.from;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 
 /**
  * Created by maggie on 4/19/16.
@@ -149,8 +147,6 @@ public class RestTestGroup {
         if (target == null || input == null) return;
         for (RestTestConfig config : input) {
             Response resp = config.getCommand().configure(target).execute();
-//            assertThat(config.getCommand().getUrl() + " failed", resp.statusCode(),
-//                    both(greaterThanOrEqualTo(200)).and(lessThan(300)));
             if (config.getName() != null && config.getRefPath() != null) {
                 target.put(config.getName(), from(resp.body().asString()).getString(config.getRefPath()));
             }
