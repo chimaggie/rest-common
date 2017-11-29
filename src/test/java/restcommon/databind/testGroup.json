@@ -1,0 +1,67 @@
+{
+  "baseUrl": "http://foo.bar",
+  "beforeGroupConfig": [
+    {
+      "name": "var1",
+      "command": {
+        "url": "/post1",
+        "method": "POST",
+        "contentType": "application/x-www-form-urlencoded",
+        "body": "foo=bar&fuz=baz"
+      },
+      "refPath": "ret"
+    }
+  ],
+  "beforeTestConfig": [
+    {
+      "name": "var2",
+      "command": {
+        "url": "/get1",
+        "method": "GET",
+        "headers": {
+          "Authorization": "${var1}"
+        }
+      }
+    }
+  ],
+  "tests": [
+    {
+      "name": "test1",
+      "command": {
+        "url": "/test1",
+        "method": "GET",
+        "headers": {
+          "X-Auth-Token": "${var2}"
+        }
+      },
+      "expect": {
+        "statusCode": 200,
+        "bodyValues": {
+          "username": "foo",
+          "password": "bar"
+        }
+      }
+    },
+    {
+      "name": "test2",
+      "command": {
+        "url": "/test2",
+        "method": "POST",
+        "contentType": "application/json",
+        "headers": {
+          "X-Auth-Token": "${var2}"
+        },
+        "body": {
+          "username": "fuz",
+          "password": "baz2",
+          "authorities": [
+            "aaa", "bbb"
+          ]
+        }
+      },
+      "expect": {
+        "statusCode": 200
+      }
+    }
+  ]
+}
